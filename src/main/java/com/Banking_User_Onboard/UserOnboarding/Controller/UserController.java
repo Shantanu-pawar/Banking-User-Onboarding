@@ -2,9 +2,6 @@ package com.Banking_User_Onboard.UserOnboarding.Controller;
 
 import com.Banking_User_Onboard.UserOnboarding.Models.User;
 import com.Banking_User_Onboard.UserOnboarding.Service.UserService;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +12,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/createUser")
+    @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody User user) {
 
          String response = userService.addUser(user);
