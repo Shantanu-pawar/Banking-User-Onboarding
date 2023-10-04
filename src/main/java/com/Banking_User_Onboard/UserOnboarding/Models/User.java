@@ -1,5 +1,8 @@
 package com.Banking_User_Onboard.UserOnboarding.Models;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.annotations.NotFound;
+import org.springframework.lang.NonNull;
 
 
 @Entity
@@ -10,13 +13,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Email_ID", unique = true, nullable = false)
+    @Column(name = "Email_ID", unique = true)
+    @NonNull
     private String email;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private int salary;
 
+    @NotNull
     private int expense;
 
     User() {

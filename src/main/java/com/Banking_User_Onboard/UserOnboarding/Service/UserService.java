@@ -5,6 +5,8 @@ import com.Banking_User_Onboard.UserOnboarding.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class UserService {
     @Autowired
@@ -20,8 +22,9 @@ public class UserService {
         }
 
         userRepository.save(user);
-        return "user added";
+        return "user added successfully";
     }
+
 
     public User getUser(int id){
         return userRepository.findById(id).orElse(null);
@@ -30,17 +33,22 @@ public class UserService {
     public User updateUser(int id, User updatedUser) {
 
 //        apply try catch block here or optional is also fine!!
-
+    try {
         User existingUser = userRepository.findById(id).orElse(null);
-
-        if (existingUser != null) {
-            existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setName(updatedUser.getName());
-            existingUser.setSalary(updatedUser.getSalary());
-            existingUser.setExpense(updatedUser.getExpense());
-            return userRepository.save(existingUser);
+            if (existingUser != null) {
+                existingUser.setEmail(updatedUser.getEmail());
+                existingUser.setName(updatedUser.getName());
+                existingUser.setSalary(updatedUser.getSalary());
+                existingUser.setExpense(updatedUser.getExpense());
+                return userRepository.save(existingUser);
+            }
+            else return null;
         }
-        else return null;
+
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void deleteUser(int userId){

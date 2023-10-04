@@ -13,10 +13,15 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-
-         String response = userService.addUser(user);
-        return new ResponseEntity(response, HttpStatus.CREATED);
+    public ResponseEntity<String> addUser(@RequestBody User user) {
+        try{
+            String response = userService.addUser(user);
+            return new ResponseEntity(response, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            String result = "User can not be added";
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/get/{id}")
@@ -46,5 +51,4 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok("User with ID " + id + " deleted");
     }
-
 }
