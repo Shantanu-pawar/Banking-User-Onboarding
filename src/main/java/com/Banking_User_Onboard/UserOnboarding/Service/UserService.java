@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -18,9 +19,15 @@ public class UserService {
         int balance = salary - expense;
 
         if(salary - expense <= 1000) {
-            return "not able to create Account : " + balance + " is less than 1000";
+            return "not able to create User's Account \n" +
+                    " cause the balance :  " + balance + " is less than 1000";
         }
 
+//  Optional handles null pointer exp whether the val is present or not, make's dev process flexible
+        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        if(optionalUser.isPresent()) {
+            return "This Email is already in use. Please enter new one : ";
+        }
         userRepository.save(user);
         return "user added successfully";
     }
@@ -30,26 +37,27 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User updateUser(int id, User updatedUser) {
+    public User updateUser(int id, User user) {
+        try {
+            Optional<User> optionalUser = userRepository.findById(id);
+            if (optionalUser.isPresent()) {
+                User existingUser = optionalUser.get();
 
-//        apply try catch block here or optional is also fine!!
-    try {
-        User existingUser = userRepository.findById(id).orElse(null);
-            if (existingUser != null) {
-                existingUser.setEmail(updatedUser.getEmail());
-                existingUser.setName(updatedUser.getName());
-                existingUser.setSalary(updatedUser.getSalary());
-                existingUser.setExpense(updatedUser.getExpense());
+                existingUser.setEmail(user.getEmail());
+                existingUser.setName(user.getName());
+                existingUser.setExpense(user.getExpense());
+                existingUser.setSalary(user.getSalary());
                 return userRepository.save(existingUser);
             }
             else return null;
         }
-
-        catch (Exception e){
+        
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
     public void deleteUser(int userId){
         userRepository.deleteById(userId);
