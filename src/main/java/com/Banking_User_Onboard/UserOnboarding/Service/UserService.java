@@ -38,42 +38,24 @@ public class UserService {
 
     public User updateUser(int id, User user) {
         try {
-            User existingUser = userRepository.findById(id).orElse(null);
-            if (existingUser != null) {
+            Optional<User> optionalUser = userRepository.findById(id);
+            if (optionalUser.isPresent()) {
+                User existingUser = optionalUser.get();
+
                 existingUser.setEmail(user.getEmail());
                 existingUser.setName(user.getName());
                 existingUser.setExpense(user.getExpense());
                 existingUser.setSalary(user.getSalary());
-
                 return userRepository.save(existingUser);
-            } else {
-                return null; // Or you can throw a custom exception indicating user not found
             }
-        } catch (Exception e) {
-            e.printStackTrace(); // Log the exception properly in a real-world scenario
+            else return null;
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
-
-//        try {
-//            Optional<User> optionalUser = userRepository.findById(id);
-//            if (optionalUser.isPresent()) {
-//                User existingUser = optionalUser.get();
-//
-//                existingUser.setEmail(user.getEmail());
-//                existingUser.setName(user.getName());
-//                existingUser.setExpense(user.getExpense());
-//                existingUser.setSalary(user.getSalary());
-//                return userRepository.save(existingUser);
-//            }
-//            else return null;
-//        }
-//
-//        catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 
 
     public void deleteUser(int userId){

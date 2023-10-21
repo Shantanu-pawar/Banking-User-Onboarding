@@ -1,3 +1,4 @@
+# Bank-User-Onboarding
 
 * Banking user onboarding System manages the onboarding process of users
 * In this API the onboard process for users has to maintain sufficient balance to be add themself and create new account.
@@ -6,7 +7,6 @@
 * These layers in the project increases its code maintanablity, understadability and readablity
 
 ___
-
 # Functionality
 
 ## I. For Admins
