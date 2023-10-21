@@ -18,7 +18,17 @@ ___
 - Admin have rights to delete any user from the system.
 
   
-- `Add Author` <br> <br>
-![image](https://github.com/Shantanu-pawar/Book-My-Book/assets/87530022/d53aa6e3-34d7-48b0-be8f-cb6ca990630f) <br>
-![image](https://github.com/Shantanu-pawar/Book-My-Book/assets/87530022/6d403ead-5684-4d54-88cc-0b21fae3990d)
+- `Add user` <br> <br>
+![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/ef1020e1-a951-45dc-8e6e-cb68eb1410ff)
+![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/4fbe8d3d-36b4-4944-904c-4fb1e4b77985)
+
+
+- `Handled the case of minimum account balance`
+![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/f7942735-2c69-4257-bf2c-7334d2b57a45)
 <br><br>
+
+- `Get the data using ID`
+![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/cdb2f4e2-6aab-458b-946c-2932810e0137)
+
+- 11
+
