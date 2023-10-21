@@ -27,8 +27,13 @@ ___
 ![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/f7942735-2c69-4257-bf2c-7334d2b57a45)
 <br><br>
 
-- `Get the data using ID`
+- `Get the user using ID`
 ![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/cdb2f4e2-6aab-458b-946c-2932810e0137)
 
-- 11
+- `Update the existing user`
+![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/aac39fa1-8af6-45ab-9649-b90786b91000)
 
+- `Delete existing user`
+![image](https://github.com/Shantanu-pawar/Banking-User-Onboarding/assets/87530022/eb963900-6ca9-4912-b980-bb6a47e16558)
+
+  
