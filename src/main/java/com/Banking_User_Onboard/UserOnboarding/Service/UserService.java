@@ -23,7 +23,6 @@ public class UserService {
                     " cause the balance :  " + balance + " is less than 1000";
         }
 
-//  Optional handles null pointer exp whether the val is present or not, make's dev process flexible
         Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
         if(optionalUser.isPresent()) {
             return "This Email is already in use. Please enter new one : ";
@@ -39,24 +38,42 @@ public class UserService {
 
     public User updateUser(int id, User user) {
         try {
-            Optional<User> optionalUser = userRepository.findById(id);
-            if (optionalUser.isPresent()) {
-                User existingUser = optionalUser.get();
-
+            User existingUser = userRepository.findById(id).orElse(null);
+            if (existingUser != null) {
                 existingUser.setEmail(user.getEmail());
                 existingUser.setName(user.getName());
                 existingUser.setExpense(user.getExpense());
                 existingUser.setSalary(user.getSalary());
+
                 return userRepository.save(existingUser);
+            } else {
+                return null; // Or you can throw a custom exception indicating user not found
             }
-            else return null;
-        }
-        
-        catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception properly in a real-world scenario
             return null;
         }
     }
+
+//        try {
+//            Optional<User> optionalUser = userRepository.findById(id);
+//            if (optionalUser.isPresent()) {
+//                User existingUser = optionalUser.get();
+//
+//                existingUser.setEmail(user.getEmail());
+//                existingUser.setName(user.getName());
+//                existingUser.setExpense(user.getExpense());
+//                existingUser.setSalary(user.getSalary());
+//                return userRepository.save(existingUser);
+//            }
+//            else return null;
+//        }
+//
+//        catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
 
     public void deleteUser(int userId){
