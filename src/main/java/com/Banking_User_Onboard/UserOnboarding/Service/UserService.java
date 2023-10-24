@@ -5,7 +5,6 @@ import com.Banking_User_Onboard.UserOnboarding.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Optional;
 
 @Service
