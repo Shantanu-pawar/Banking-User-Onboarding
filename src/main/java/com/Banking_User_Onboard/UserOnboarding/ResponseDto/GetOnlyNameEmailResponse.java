@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UserCustomNameEmail {
+public class GetOnlyNameEmailResponse {
 
     private String email;
     private String name;

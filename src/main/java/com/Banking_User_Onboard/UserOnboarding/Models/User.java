@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name = "ActiveUsers")
+@Table(name = "user")
 @Data
 @Builder
 @AllArgsConstructor

@@ -10,13 +10,4 @@ public class UserOnboardingApplication {
 		SpringApplication.run(UserOnboardingApplication.class, args);
 	}
 
-
-//
-//			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-//		<dependency>
-//			<groupId>org.springframework.boot</groupId>
-//			<artifactId>spring-boot-starter-security</artifactId>
-//		</dependency>
-
-
 }

@@ -1,14 +1,15 @@
 package com.Banking_User_Onboard.UserOnboarding.Controller;
 
 import com.Banking_User_Onboard.UserOnboarding.EntryDTO.UserEntryDto;
-import com.Banking_User_Onboard.UserOnboarding.Models.User;
-import com.Banking_User_Onboard.UserOnboarding.ResponseDto.UserCustomNameEmail;
+import com.Banking_User_Onboard.UserOnboarding.ResponseDto.GetOnlyNameEmailResponse;
 import com.Banking_User_Onboard.UserOnboarding.Service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -31,11 +32,11 @@ public class UserController {
         }
     }
 
-    @GetMapping("/getCustomUser/{id}")
-    public ResponseEntity<String> getCustomUserParams(@PathVariable("id") int id){
+    @GetMapping("/getAllUsers")
+    public ResponseEntity<String> getCustomUserParams(){
         try{
-            UserCustomNameEmail userCustomNameEmail = userService.getCustomUser(id);
-            return new ResponseEntity(userCustomNameEmail, HttpStatus.OK);
+            List<GetOnlyNameEmailResponse> list = userService.getAllUsersAsCustom();
+            return new ResponseEntity(list, HttpStatus.OK);
         }
         catch (Exception e){
             log.error("User not able to found" + e.getMessage());
@@ -43,16 +44,15 @@ public class UserController {
         }
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateUser(@RequestBody UserEntryDto user, @PathVariable("id")int id){
-
+    @PutMapping("/updateUser")
+    public ResponseEntity<String> updateUser(@RequestBody UserEntryDto user){
         try{
-            String response = userService.updateUser(user, id);
+            String response = userService.updateUser(user);
             return  new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (Exception e){
-            String response = "User is not present so cannot be updated";
-            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+            log.error("User is not present so cannot be updated ", e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
